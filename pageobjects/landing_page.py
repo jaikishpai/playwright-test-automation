@@ -26,6 +26,6 @@ class LandingPage:
         self.show_more_link.click()
 
     def get_speed_value(self):
-        self.show_more_link.wait_for(state="visible")
+        self.show_more_link.wait_for(state="visible", timeout=60000)
         return self.speed_value.text_content()
 
