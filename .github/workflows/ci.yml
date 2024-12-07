@@ -23,6 +23,6 @@ jobs:
         run: |
           pipenv install --deploy --dev
       - name: Install Playwright
-        run: playwright install
+        run: pipenv run playwright install
       - name: Run Tests
-        run: pytest -v
+        run: pipenv run pytest -v
