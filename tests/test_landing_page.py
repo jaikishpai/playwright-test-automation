@@ -22,9 +22,9 @@ def test_landing_page(page:Page):
     lp.navigate_to_landing_page()
     expect(page).to_have_title("Internet Speed Test | Fast.com")
     expect(lp.logo).to_be_visible()
-    speed_value = lp.get_speed_value()
+    speed_value, speed_units = lp.get_speed()
     time_stamp = return_timestamp()
-    print(f'\n{time_stamp} :: Speed Value :: {speed_value}')
+    print(f'\n{time_stamp} :: Internet Speed :: {speed_value} {speed_units}')
 
 
 
