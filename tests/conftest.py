@@ -6,7 +6,7 @@ import pytest
 @pytest.fixture(scope="function", autouse=True)
 def browser():
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=True)
+        browser = playwright.chromium.launch(headless=False)
         yield browser
         browser.close()
 
