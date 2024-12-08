@@ -11,6 +11,10 @@ jobs:
   code-analysis:
     runs-on: ubuntu-latest
 
+    permissions:
+      security-events: write
+      actions: read
+
     strategy:
       fail-fast: false
       matrix:
