@@ -8,7 +8,29 @@ on:
     branches:
       - main
 jobs:
+  code-analysis:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language:['python']
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: python
+
+      - name: Analyse Code
+        uses: github/codeql-action/analyze@v2
+  
+  
   test:
+    needs: code-analysis
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -33,7 +55,7 @@ jobs:
         run: pipenv run pytest --html=report.html --self-contained-html
 
       - name: Upload HTML report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pytest-html-report
           path: report.html
