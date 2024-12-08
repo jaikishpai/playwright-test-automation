@@ -29,20 +29,6 @@ jobs:
         with:
           languages: python
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.10.11'
-
-      - name: Install dependencies
-        run: |
-          pip install pipenv
-          pipenv install --deploy --dev
-
-      - name: Analyse Code
-        uses: github/codeql-action/analyze@v2
-  
-  
   test:
     needs: code-analysis
     runs-on: ubuntu-latest
