@@ -29,6 +29,11 @@ jobs:
         with:
           languages: python
 
+      - name: Install dependencies
+        run: |
+          pip install pipenv
+          pipenv install --deploy --dev
+
       - name: Analyse Code
         uses: github/codeql-action/analyze@v2
   
