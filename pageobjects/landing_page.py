@@ -1,4 +1,4 @@
-from utility.logger import logger
+from utility.logger import get_logger
 
 from playwright.sync_api import Page
 
@@ -11,6 +11,7 @@ to provide an abstraction layer.
 
 It ensures a clean, reusable, and maintainable structure for automation.
 """
+logger = get_logger(__name__)
 
 class LandingPage:
 

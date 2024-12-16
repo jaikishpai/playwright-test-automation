@@ -1,4 +1,4 @@
-from utility.logger import logger
+from utility.logger import get_logger
 import pytest
 
 from playwright.sync_api import Page, expect
@@ -16,6 +16,7 @@ using the Page Object Model (POM) design pattern.
 These tests ensure the page behaves as expected, providing reliable and 
 maintainable automation coverage.
 """
+logger = get_logger(__name__)
 
 @pytest.mark.regression
 def test_landing_page(page:Page):
