@@ -1,3 +1,5 @@
+from time import sleep
+
 from utility.logger import get_logger
 import pytest
 
@@ -20,10 +22,10 @@ logger = get_logger(__name__)
 
 @pytest.mark.regression
 def test_landing_page(page:Page):
-    logger.info("Starting Landing Page Test")
+    logger.info("Starting Landing Page Test...")
     lp = LandingPage(page)
     lp.navigate_to_landing_page()
-    logger.info("Verifying Title and Logo")
+    logger.info("Verifying Title and Logo...")
     expect(page).to_have_title("Internet Speed Test | Fast.com")
     expect(lp.logo).to_be_visible()
     speed_value, speed_units = lp.get_speed()
@@ -32,17 +34,32 @@ def test_landing_page(page:Page):
 
 
 def test_show_more_info(page:Page):
-    logger.info("Starting Show More Info Test")
+    logger.info("Starting Show More Info Test...")
     lp = LandingPage(page)
     lp.navigate_to_landing_page()
     lp.wait_for_speedtest_completion()
     lp.click_show_more_info_link()
-    logger.info("Verifying Latency Field and Upload Speed")
+    logger.info("Verifying Latency Field and Upload Speed...")
     expect(lp.latency_container).to_be_visible()
     expect(lp.upload_field).to_be_visible()
     upload_value, upload_units = lp.get_upload_speed()
     time_stamp = return_timestamp()
     logger.info(f'\n{time_stamp} :: Upload Speed :: {upload_value} {upload_units}')
+
+
+def test_update_speedtest_settings(page:Page):
+    logger.info("Starting Update Speed Test")
+    lp = LandingPage(page)
+    lp.navigate_to_landing_page()
+    lp.wait_for_speedtest_completion()
+    lp.click_show_more_info_link()
+    lp.click_settings_button()
+    lp.update_settings(min_connections="3", max_connections="20")
+
+
+
+
+
 
 
 
